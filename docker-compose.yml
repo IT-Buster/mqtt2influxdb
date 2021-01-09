@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    container_name: mosquitto
+    ports:
+      - 1883:1883
+    environment:
+      PUID: 8989
+      PGID: 9876
+    volumes:
+      - ./prepconfig/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./prepconfig/users:/mosquitto/config/users
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    restart: always
+
+  influxdb:
+    image: influxdb:1.7.10
+    container_name: influxdb
+    ports:
+      - 8086:8086
+    environment:
+      PUID: 889
+      PGID: 976
+    volumes:
+      - ./influxdb:/var/lib/influxdb
+    restart: always
+
+  grafana:
+    image: grafana/grafana:6.7.3
+    container_name: grafana
+    depends_on:
+      - influxdb
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana:/var/lib/grafana
+    restart: always
+
+  mqtt2influxdb:
+    build: mqtt2influxdb
+    image: mqtt2influx:latest
+    container_name: mqtt2influxdb
+    depends_on:
+      - mosquitto
+      - influxdb
+    volumes:
+      - ./mqtt2influxdb/config:/config
+    command: mqtt2influxdb -c /config/mqtt2influxdb.yml
+    restart: always

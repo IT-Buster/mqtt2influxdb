@@ -1,0 +1,152 @@
+mqtt:
+    host: mosquitto
+    username: mqttuser
+    password: mqttpassword
+    port: 1883
+
+influxdb:
+    host: influxdb
+    port: 8086
+    database: home_db
+    username: root
+    password: root
+
+points:
+  - measurement: temp
+    topic: drzwi/dht22/temp
+    fields:
+      value: $.payload
+    tags:
+      room: "wejscie"
+      sensor: $.topic[1]
+
+  - measurement: temp
+    topic: ESP_Easy_2/Temp/Temperature
+    fields:
+      value: $.payload
+    tags:
+      room: "biuro"
+      sensor: "bmp280"
+
+  - measurement: temp
+    topic: pokoj_2/ds18b20/temperature
+    fields:
+      value: $.payload
+    tags:
+      room: "pokoj_2"
+      sensor: "ds18b20"
+
+  - measurement: pressure
+    topic: ESP_Easy_2/Temp/Pressure
+    fields:
+      value: $.payload
+    tags:
+      room: "biuro"
+      sensor: "bmp280"
+
+  - measurement: voltage
+    topic: ESP_Easy_2/SystemInfo/vcc
+    fields:
+      value: $.payload
+    tags:
+      room: "biuro"
+      sensor: "vcc"
+
+  - measurement: voltage
+    topic: ESP_Easy_3/Temp/vcc
+    fields:
+      value: $.payload
+    tags:
+      room: "pokoj_1"
+      sensor: "vcc"
+
+  - measurement: voltage
+    topic: pokoj_2/SystemInfo/vcc
+    fields:
+      value: $.payload
+    tags:
+      room: "pokoj_2"
+      sensor: "vcc"
+
+  - measurement: rssi
+    topic: pokoj_2/SystemInfo/rssi
+    fields:
+      value: $.payload
+    tags:
+      room: "pokoj_2"
+      sensor: "rssi"
+
+  - measurement: temp
+    topic: ESP_Easy_3/Temp/Temperature
+    fields:
+      value: $.payload
+    tags:
+      room: "pokoj_1"
+      sensor: "bmp280"
+
+  - measurement: pressure
+    topic: ESP_Easy_3/Temp/Pressure
+    fields:
+      value: $.payload
+    tags:
+      room: "pokoj_1"
+      sensor: "bmp280"
+
+  - measurement: temp
+    topic: /ESP_Easy_4/bmp280/Temperature
+    fields:
+      value: $.payload
+    tags:
+      room: "lazienka"
+      sensor: $.topic[1]
+
+  - measurement: pressure
+    topic: /ESP_Easy_4/bmp280/Pressure
+    fields:
+      value: $.payload
+    tags:
+      room: "lazienka"
+      sensor: $.topic[1]
+
+  - measurement: hum
+    topic: /ESP_Easy_4/bmp280/Humidity
+    fields:
+      value: $.payload
+    tags:
+      room: "lazienka"
+      sensor: $.topic[1]
+
+  - measurement: fan
+    topic: /ESP_Easy_4/switch/State
+    fields:
+      value: $.payload
+    tags:
+      room: "lazienka"
+      sensor: $.topic[1]
+
+  - measurement: hum
+    topic: drzwi/dht22/hum
+    fields:
+      value: $.payload
+    tags:
+      room: "wejscie"
+      sensor: $.topic[1]
+
+  - measurement: doorlock
+    topic: drzwi/switch/up
+    fields:
+      value: $.payload
+    tags:
+      room: "wejscie"
+      sensor: $.topic[1]
+      lock-side: "up"
+
+  - measurement: doorlock
+    topic: drzwi/switch/down
+    fields:
+      value: $.payload
+    tags:
+      room: "wejscie"
+      sensor: $.topic[1]
+      lock-side: "down"
+
