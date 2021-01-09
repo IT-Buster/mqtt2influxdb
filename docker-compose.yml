@@ -50,3 +50,4 @@ services:
       - ./mqtt2influxdb/config:/config
     command: mqtt2influxdb -c /config/mqtt2influxdb.yml
     restart: always
+
