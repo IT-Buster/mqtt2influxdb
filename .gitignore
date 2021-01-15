@@ -2,4 +2,4 @@ grafana/
 influx_backup.log
 influxdb/
 mosquitto/
-
+.env

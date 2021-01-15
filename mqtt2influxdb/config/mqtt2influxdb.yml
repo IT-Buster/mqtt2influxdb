@@ -20,6 +20,32 @@ points:
       room: "wejscie"
       sensor: $.topic[1]
 
+  - measurement: hum
+    topic: drzwi/dht22/hum
+    fields:
+      value: $.payload
+    tags:
+      room: "wejscie"
+      sensor: $.topic[1]
+
+  - measurement: doorlock
+    topic: drzwi/switch/up
+    fields:
+      value: $.payload
+    tags:
+      room: "wejscie"
+      sensor: $.topic[1]
+      lock-side: "up"
+
+  - measurement: doorlock
+    topic: drzwi/switch2/down
+    fields:
+      value: $.payload
+    tags:
+      room: "wejscie"
+      sensor: $.topic[1]
+      lock-side: "down"
+
   - measurement: temp
     topic: ESP_Easy_2/Temp/Temperature
     fields:
@@ -27,14 +53,6 @@ points:
     tags:
       room: "biuro"
       sensor: "bmp280"
-
-  - measurement: temp
-    topic: pokoj_2/ds18b20/temperature
-    fields:
-      value: $.payload
-    tags:
-      room: "pokoj_2"
-      sensor: "ds18b20"
 
   - measurement: pressure
     topic: ESP_Easy_2/Temp/Pressure
@@ -44,6 +62,14 @@ points:
       room: "biuro"
       sensor: "bmp280"
 
+  - measurement: rssi
+    topic: ESP_Easy_2/SystemInfo/rssi
+    fields:
+      value: $.payload
+    tags:
+      room: "biuro"
+      sensor: "rssi"
+
   - measurement: voltage
     topic: ESP_Easy_2/SystemInfo/vcc
     fields:
@@ -52,6 +78,22 @@ points:
       room: "biuro"
       sensor: "vcc"
 
+  - measurement: temp
+    topic: ESP_Easy_3/Temp/Temperature
+    fields:
+      value: $.payload
+    tags:
+      room: "pokoj_1"
+      sensor: "bmp280"
+
+  - measurement: pressure
+    topic: ESP_Easy_3/Temp/Pressure
+    fields:
+      value: $.payload
+    tags:
+      room: "pokoj_1"
+      sensor: "bmp280"
+
   - measurement: voltage
     topic: ESP_Easy_3/Temp/vcc
     fields:
@@ -59,6 +101,14 @@ points:
     tags:
       room: "pokoj_1"
       sensor: "vcc"
+
+  - measurement: rssi
+    topic: pokoj_1/SystemInfo/rssi
+    fields:
+      value: $.payload
+    tags:
+      room: "pokoj_1"
+      sensor: "rssi"
 
   - measurement: voltage
     topic: pokoj_2/SystemInfo/vcc
@@ -77,20 +127,12 @@ points:
       sensor: "rssi"
 
   - measurement: temp
-    topic: ESP_Easy_3/Temp/Temperature
+    topic: pokoj_2/ds18b20/temperature
     fields:
       value: $.payload
     tags:
-      room: "pokoj_1"
-      sensor: "bmp280"
-
-  - measurement: pressure
-    topic: ESP_Easy_3/Temp/Pressure
-    fields:
-      value: $.payload
-    tags:
-      room: "pokoj_1"
-      sensor: "bmp280"
+      room: "pokoj_2"
+      sensor: "ds18b20"
 
   - measurement: temp
     topic: /ESP_Easy_4/bmp280/Temperature
@@ -124,29 +166,5 @@ points:
       room: "lazienka"
       sensor: $.topic[1]
 
-  - measurement: hum
-    topic: drzwi/dht22/hum
-    fields:
-      value: $.payload
-    tags:
-      room: "wejscie"
-      sensor: $.topic[1]
 
-  - measurement: doorlock
-    topic: drzwi/switch/up
-    fields:
-      value: $.payload
-    tags:
-      room: "wejscie"
-      sensor: $.topic[1]
-      lock-side: "up"
-
-  - measurement: doorlock
-    topic: drzwi/switch/down
-    fields:
-      value: $.payload
-    tags:
-      room: "wejscie"
-      sensor: $.topic[1]
-      lock-side: "down"
 

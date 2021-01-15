@@ -29,12 +29,20 @@ services:
     restart: always
 
   grafana:
-    image: grafana/grafana:6.7.3
+    image: grafana/grafana
     container_name: grafana
     depends_on:
       - influxdb
     ports:
       - 3000:3000
+    environment:
+      - GF_INSTALL_PLUGINS=${GF_INSTALL_PLUGINS}
+      - GF_SMTP_ENABLED=${GF_SMTP_ENABLED}
+      - GF_SMTP_HOST=${GF_SMTP_HOST}
+      - GF_SMTP_USER=${GF_SMTP_USER}
+      - GF_SMTP_PASSWORD=${GF_SMTP_PASSWORD}
+      - GF_SMTP_FROM_ADDRESS=${GF_SMTP_FROM_ADDRESS}
+      - GF_SMTP_FROM_NAME=${GF_SMTP_FROM_NAME}
     volumes:
       - ./grafana:/var/lib/grafana
     restart: always
